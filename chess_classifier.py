@@ -1,4 +1,18 @@
 #!/usr/bin/env python3
+'''
+Script that classifies chess pieces in an image
+
+Inputs:
+=======
+    img_path: path to image of a single chess piece
+    model_path(optional): path to model that the classifier will use. If empty, 
+    will default to the SGD model
+
+Outputs:
+========
+    The script will print to stdout the predicted label and the confidence percentage
+
+'''
 
 import sys
 import torch
@@ -55,16 +69,16 @@ else:
     model_path = None
 img_path = sys.argv[1]
 
-# Initialize the pre-trained model
+# Load the model
 model = ChessNet()
-
 if not model_path:
     model_path = "./model_SGD.pt"
 model.load_state_dict(torch.load(model_path,map_location=torch.device("cpu")))
 
-# Get the image
+# Load the image
 img = import_image(img_path)
 
+# Evaluate the model with the image data as input and print the result
 with torch.no_grad():
     model.eval()
     yp = model(img)

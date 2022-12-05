@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 datasets/
 *.pt
+*.mp4
 
 # C extensions
 *.so
