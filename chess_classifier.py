@@ -48,12 +48,19 @@ def import_image(img_path):
 classes = ["Queen","Rook","Bishop","Knight","Pawn"]
 
 # Get path to image from command line args
-assert(len(sys.argv) == 2)
+assert(len(sys.argv) == 2 or len(sys.argv) == 3), "Invalid input"
+if len(sys.argv) == 3:
+    model_path = sys.argv[2]
+else:
+    model_path = None
 img_path = sys.argv[1]
 
 # Initialize the pre-trained model
 model = ChessNet()
-model.load_state_dict(torch.load("./chess_70A.pt",map_location=torch.device("cpu")))
+
+if not model_path:
+    model_path = "./model_SGD.pt"
+model.load_state_dict(torch.load(model_path,map_location=torch.device("cpu")))
 
 # Get the image
 img = import_image(img_path)
