@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-import numpy as np 
 import sys
 import torch
 from torch import nn
@@ -8,7 +7,6 @@ import torchvision
 import torchvision.transforms.functional as fn
 from torchvision.transforms import Resize
 from PIL import Image
-from matplotlib import pyplot as plt
 from utils import brint
 
 # Define a neural network as a class that inherits from the torch.nn.Module class 
@@ -46,7 +44,7 @@ def import_image(img_path):
     return img
 
 
-
+# Define the data classes
 classes = ["Queen","Rook","Bishop","Knight","Pawn"]
 
 # Get path to image from command line args
